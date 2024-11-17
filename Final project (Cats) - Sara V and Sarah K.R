@@ -26,12 +26,23 @@ cat <- cat %>% filter(!is.na(Breed), !is.na(Color), !is.na(Gender))
 
 boxplot(cat$Age..Years., main = "Boxplot of Age", ylab = "Age")
 
+
 # GOOGLED FACTOR TO FIX ERROR
 cat$Breed <- factor(cat$Breed)
 cat$Color <- factor(cat$Color)
 cat$Gender <- factor(cat$Gender)
 
-# model
-pred <- lm(as.numeric(Breed) ~ Age..Years. + Weight..kg. + Color + Gender, data = cat)
-summary(pred)
 
+
+# model
+pred_weight <- lm(Weight..kg. ~ Gender, data = cat)
+summary(pred_weight)
+
+par(mfrow = c(2, 2))
+plot(pred_weight)
+
+
+
+plot(pred_weight)
+
+plot(pred_weight)$r.squared
