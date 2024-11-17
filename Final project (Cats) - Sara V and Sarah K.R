@@ -1,5 +1,5 @@
 
-cat <-read.csv("C:/Users/Sarah/Downloads/cats.csv")
+cat <-read.csv("C:/Users/Sarah/OneDrive/Documents/cat.csv")
 
 
 library(dplyr)
@@ -32,17 +32,19 @@ cat$Breed <- factor(cat$Breed)
 cat$Color <- factor(cat$Color)
 cat$Gender <- factor(cat$Gender)
 
-
+# Preparing data
+cat$Age..Year. <- as.numeric(cat$Age..Years.)
+cat$Weight <- as.numeric(cat$Weight..kg.)
 
 # model
-pred_weight <- lm(Weight..kg. ~ Gender, data = cat)
+pred_weight <- lm(Weight..kg. ~ Age..Year., data = cat)
 summary(pred_weight)
 
 par(mfrow = c(2, 2))
 plot(pred_weight)
 
+# Predicts weight by year (not great model)
+update_cat <- data.frame(Age..Year. = 18)
+predicted_weight <- predict(pred_weight, update_cat)
+print(predicted_weight)
 
-
-plot(pred_weight)
-
-plot(pred_weight)$r.squared
